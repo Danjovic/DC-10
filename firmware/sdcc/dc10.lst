@@ -1,0 +1,929 @@
+gplink-1.4.2 #1169 (Jan  2 2016)
+Copyright (c) 1998-2015 gputils project
+Listing File Generated: 11-26-2016  03:09:07
+ 
+ 
+Address  Value    Disassembly              Source
+-------  -----    -----------              ------
+                                           ;--------------------------------------------------------
+                                           ; File Created by SDCC : free open source ANSI-C Compiler
+                                           ; Version 3.5.0 #9253 (Jun 20 2015) (MINGW64)
+                                           ; This file was generated Sat Nov 26 03:09:07 2016
+                                           ;--------------------------------------------------------
+                                           ; PIC port for the 14-bit core
+                                           ;--------------------------------------------------------
+                                           ;	.file	"main.c"
+                                           	list	p=16f628
+                                           	radix dec
+                                           	include "p16f628.inc"
+                                                   LIST
+                                           
+                                           ;==========================================================================
+                                           ; Build date : Oct 21 2015
+                                           ;  MPASM PIC16F628 processor include
+                                           ; 
+                                           ;  (c) Copyright 1999-2015 Microchip Technology, All rights reserved
+                                           ;==========================================================================
+                                           
+                                                   NOLIST
+                                           ;--------------------------------------------------------
+                                           ; config word(s)
+                                           ;--------------------------------------------------------
+002007   3f02     addlw   0x02             	__config 0x3f02
+                                           ;--------------------------------------------------------
+                                           ; external declarations
+                                           ;--------------------------------------------------------
+                                           	extern	_STATUSbits
+                                           	extern	_PORTAbits
+                                           	extern	_PORTBbits
+                                           	extern	_INTCONbits
+                                           	extern	_PIR1bits
+                                           	extern	_T1CONbits
+                                           	extern	_T2CONbits
+                                           	extern	_CCP1CONbits
+                                           	extern	_RCSTAbits
+                                           	extern	_CMCONbits
+                                           	extern	_OPTION_REGbits
+                                           	extern	_TRISAbits
+                                           	extern	_TRISBbits
+                                           	extern	_PIE1bits
+                                           	extern	_PCONbits
+                                           	extern	_TXSTAbits
+                                           	extern	_EECON1bits
+                                           	extern	_VRCONbits
+                                           	extern	_INDF
+                                           	extern	_TMR0
+                                           	extern	_PCL
+                                           	extern	_STATUS
+                                           	extern	_FSR
+                                           	extern	_PORTA
+                                           	extern	_PORTB
+                                           	extern	_PCLATH
+                                           	extern	_INTCON
+                                           	extern	_PIR1
+                                           	extern	_TMR1
+                                           	extern	_TMR1L
+                                           	extern	_TMR1H
+                                           	extern	_T1CON
+                                           	extern	_TMR2
+                                           	extern	_T2CON
+                                           	extern	_CCPR1
+                                           	extern	_CCPR1L
+                                           	extern	_CCPR1H
+                                           	extern	_CCP1CON
+                                           	extern	_RCSTA
+                                           	extern	_TXREG
+                                           	extern	_RCREG
+                                           	extern	_CMCON
+                                           	extern	_OPTION_REG
+                                           	extern	_TRISA
+                                           	extern	_TRISB
+                                           	extern	_PIE1
+                                           	extern	_PCON
+                                           	extern	_PR2
+                                           	extern	_TXSTA
+                                           	extern	_SPBRG
+                                           	extern	_EEDATA
+                                           	extern	_EEADR
+                                           	extern	_EECON1
+                                           	extern	_EECON2
+                                           	extern	_VRCON
+                                           	extern	___sdcc_saved_fsr
+                                           	extern	__gptrget1
+                                           	extern	__sdcc_gsinit_startup
+                                           ;--------------------------------------------------------
+                                           ; global declarations
+                                           ;--------------------------------------------------------
+                                           	global	_advance_tick
+                                           	global	_advance_centival
+                                           	global	_advance_interval
+                                           	global	_init_hw
+                                           	global	_main
+                                           	global	_tick_01
+                                           	global	_tick_10
+                                           	global	_interval_01
+                                           	global	_interval_10
+                                           	global	_centival_01
+                                           	global	_centival_10
+                                           	global	_digit
+                                           	global	_display
+                                           	global	_Time_B1_Pressed
+                                           	global	_Time_B2_Pressed
+                                           	global	_common
+                                           	global	_digits
+                                           
+                                           	global PSAVE
+                                           	global SSAVE
+                                           	global WSAVE
+                                           	global STK12
+                                           	global STK11
+                                           	global STK10
+                                           	global STK09
+                                           	global STK08
+                                           	global STK07
+                                           	global STK06
+                                           	global STK05
+                                           	global STK04
+                                           	global STK03
+                                           	global STK02
+                                           	global STK01
+                                           	global STK00
+                                           
+                                           sharebank udata_ovr 0x0070
+                                           PSAVE	res 1
+                                           SSAVE	res 1
+                                           WSAVE	res 1
+                                           STK12	res 1
+                                           STK11	res 1
+                                           STK10	res 1
+                                           STK09	res 1
+                                           STK08	res 1
+                                           STK07	res 1
+                                           STK06	res 1
+                                           STK05	res 1
+                                           STK04	res 1
+                                           STK03	res 1
+                                           STK02	res 1
+                                           STK01	res 1
+                                           STK00	res 1
+                                           
+                                           ;--------------------------------------------------------
+                                           ; global definitions
+                                           ;--------------------------------------------------------
+                                           UD_main_0	udata
+                                           _Time_B1_Pressed	res	1
+                                           
+                                           ;--------------------------------------------------------
+                                           ; absolute symbol definitions
+                                           ;--------------------------------------------------------
+                                           ;--------------------------------------------------------
+                                           ; compiler-defined variables
+                                           ;--------------------------------------------------------
+                                           UDL_main_0	udata
+                                           r0x1015	res	1
+                                           r0x1016	res	1
+                                           r0x1017	res	1
+                                           r0x1018	res	1
+                                           r0x1019	res	1
+                                           r0x101A	res	1
+                                           ;--------------------------------------------------------
+                                           ; initialized data
+                                           ;--------------------------------------------------------
+                                           
+                                           ID_main_0	idata
+                                           _go
+                                           	db	0x00
+                                           
+                                           
+                                           ID_main_1	idata
+                                           _go_counter
+                                           	db	0x00
+                                           
+                                           
+                                           ID_main_2	idata
+                                           _new_tick
+                                           	db	0x00
+                                           
+                                           
+                                           ID_main_3	idata
+                                           _tick_01
+                                           	db	0x00
+                                           
+                                           
+                                           ID_main_4	idata
+                                           _tick_10
+                                           	db	0x00
+                                           
+                                           
+                                           ID_main_5	idata
+                                           _interval_01
+                                           	db	0x00
+                                           
+                                           
+                                           ID_main_6	idata
+                                           _interval_10
+                                           	db	0x00
+                                           
+                                           
+                                           ID_main_7	idata
+                                           _centival_01
+                                           	db	0x00
+                                           
+                                           
+                                           ID_main_8	idata
+                                           _centival_10
+                                           	db	0x00
+                                           
+                                           
+                                           ID_main_9	idata
+                                           _digit
+                                           	db	0x00
+                                           
+                                           
+                                           ID_main_10	idata
+                                           _display
+                                           	db	0x50
+                                           	db	0x50
+                                           	db	0x50
+                                           	db	0x50
+                                           
+                                           
+                                           ID_main_11	idata
+                                           _Time_B2_Pressed
+                                           	db	0x00
+                                           
+                                           
+                                           ID_main_12	idata
+                                           _bres
+                                           	db	0x00, 0x00, 0x00, 0x00
+                                           
+                                           
+                                           ID_main_13	code
+                                           _common
+0002e0   3401     retlw   0x01             	retlw 0x01
+0002e1   3402     retlw   0x02             	retlw 0x02
+0002e2   3404     retlw   0x04             	retlw 0x04
+0002e3   3408     retlw   0x08             	retlw 0x08
+                                           
+                                           
+                                           ID_main_14	code
+                                           _digits
+0002ce   3450     retlw   0x50             	retlw 0x50
+0002cf   34d7     retlw   0xd7             	retlw 0xd7
+0002d0   3464     retlw   0x64             	retlw 0x64
+0002d1   3445     retlw   0x45             	retlw 0x45
+0002d2   34c3     retlw   0xc3             	retlw 0xc3
+0002d3   3449     retlw   0x49             	retlw 0x49
+0002d4   3448     retlw   0x48             	retlw 0x48
+0002d5   34d5     retlw   0xd5             	retlw 0xd5
+0002d6   3440     retlw   0x40             	retlw 0x40
+0002d7   3441     retlw   0x41             	retlw 0x41
+                                           
+                                           ;--------------------------------------------------------
+                                           ; overlayable items in internal ram 
+                                           ;--------------------------------------------------------
+                                           ;	udata_ovr
+                                           ;--------------------------------------------------------
+                                           ; reset vector 
+                                           ;--------------------------------------------------------
+                                           STARTUP	code 0x0000
+000000   0000     nop                      	nop
+                                           	pagesel __sdcc_gsinit_startup
+000001   29a8     goto    0x01a8           	goto	__sdcc_gsinit_startup
+                                           ;--------------------------------------------------------
+                                           ; interrupt and initialization code
+                                           ;--------------------------------------------------------
+                                           c_interrupt	code	0x4
+                                           __sdcc_interrupt
+                                           ;***
+                                           ;  pBlock Stats: dbName = I
+                                           ;***
+                                           ;entry:  _irqHandler	;Function start
+                                           ; 0 exit points
+                                           ;; Starting pCode block
+                                           _irqHandler	;Function start
+                                           ; 0 exit points
+                                           ;	.line	93; "main.c"	static void irqHandler(void) __interrupt 0 {
+000004   00f2     movwf   0x72             	MOVWF	WSAVE
+000005   0e03     swapf   0x03, 0x0        	SWAPF	STATUS,W
+000006   0183     clrf    0x03             	CLRF	STATUS
+000007   00f1     movwf   0x71             	MOVWF	SSAVE
+000008   080a     movf    0x0a, 0x0        	MOVF	PCLATH,W
+000009   018a     clrf    0x0a             	CLRF	PCLATH
+00000a   00f0     movwf   0x70             	MOVWF	PSAVE
+00000b   0804     movf    0x04, 0x0        	MOVF	FSR,W
+00000c   1283     bcf     0x03, 0x5        	BANKSEL	___sdcc_saved_fsr
+00000d   1703     bsf     0x03, 0x6        
+00000e   00c6     movwf   0x46             	MOVWF	___sdcc_saved_fsr
+                                           ;	.line	95; "main.c"	bres+=256;
+00000f   1283     bcf     0x03, 0x5        	BANKSEL	_bres
+000010   1703     bsf     0x03, 0x6        
+000011   0ab7     incf    0x37, 0x1        	INCF	(_bres + 1),F
+000012   1903     btfsc   0x03, 0x2        	BTFSC	STATUS,2
+000013   0ab8     incf    0x38, 0x1        	INCF	(_bres + 2),F
+000014   1903     btfsc   0x03, 0x2        	BTFSC	STATUS,2
+000015   0ab9     incf    0x39, 0x1        	INCF	(_bres + 3),F
+                                           ;;unsigned compare: left < lit(0x15180=86400), size=4
+                                           ;	.line	96; "main.c"	if (bres>=86400) { 
+000016   3000     movlw   0x00             	MOVLW	0x00
+000017   0239     subwf   0x39, 0x0        	SUBWF	(_bres + 3),W
+000018   1d03     btfss   0x03, 0x2        	BTFSS	STATUS,2
+000019   2824     goto    0x0024           	GOTO	_00117_DS_
+00001a   3001     movlw   0x01             	MOVLW	0x01
+00001b   0238     subwf   0x38, 0x0        	SUBWF	(_bres + 2),W
+00001c   1d03     btfss   0x03, 0x2        	BTFSS	STATUS,2
+00001d   2824     goto    0x0024           	GOTO	_00117_DS_
+00001e   3051     movlw   0x51             	MOVLW	0x51
+00001f   0237     subwf   0x37, 0x0        	SUBWF	(_bres + 1),W
+000020   1d03     btfss   0x03, 0x2        	BTFSS	STATUS,2
+000021   2824     goto    0x0024           	GOTO	_00117_DS_
+000022   3080     movlw   0x80             	MOVLW	0x80
+000023   0236     subwf   0x36, 0x0        	SUBWF	_bres,W
+                                           _00117_DS_
+000024   1c03     btfss   0x03, 0x0        	BTFSS	STATUS,0
+000025   2839     goto    0x0039           	GOTO	_00106_DS_
+                                           ;;genSkipc:3247: created from rifx:00000000047558E0
+                                           ;	.line	97; "main.c"	bres=bres-86400;
+000026   3080     movlw   0x80             	MOVLW	0x80
+000027   1283     bcf     0x03, 0x5        	BANKSEL	_bres
+000028   1703     bsf     0x03, 0x6        
+000029   07b6     addwf   0x36, 0x1        	ADDWF	_bres,F
+00002a   30ae     movlw   0xae             	MOVLW	0xae
+00002b   1803     btfsc   0x03, 0x0        	BTFSC	STATUS,0
+00002c   30af     movlw   0xaf             	MOVLW	0xaf
+00002d   07b7     addwf   0x37, 0x1        	ADDWF	(_bres + 1),F
+00002e   30fe     movlw   0xfe             	MOVLW	0xfe
+00002f   1803     btfsc   0x03, 0x0        	BTFSC	STATUS,0
+000030   30ff     movlw   0xff             	MOVLW	0xff
+000031   07b8     addwf   0x38, 0x1        	ADDWF	(_bres + 2),F
+000032   30ff     movlw   0xff             	MOVLW	0xff
+000033   1c03     btfss   0x03, 0x0        	BTFSS	STATUS,0
+000034   07b9     addwf   0x39, 0x1        	ADDWF	(_bres + 3),F
+                                           ;	.line	98; "main.c"	new_tick=1;
+000035   3001     movlw   0x01             	MOVLW	0x01
+000036   1283     bcf     0x03, 0x5        	BANKSEL	_new_tick
+000037   1703     bsf     0x03, 0x6        
+000038   00bd     movwf   0x3d             	MOVWF	_new_tick
+                                           _00106_DS_
+                                           ;	.line	100; "main.c"	if ((++go_counter&15) == 0) go=1;
+000039   1283     bcf     0x03, 0x5        	BANKSEL	_go_counter
+00003a   1703     bsf     0x03, 0x6        
+00003b   0abc     incf    0x3c, 0x1        	INCF	_go_counter,F
+00003c   083c     movf    0x3c, 0x0        	MOVF	_go_counter,W
+00003d   390f     andlw   0x0f             	ANDLW	0x0f
+00003e   1d03     btfss   0x03, 0x2        	BTFSS	STATUS,2
+00003f   2844     goto    0x0044           	GOTO	_00108_DS_
+000040   3001     movlw   0x01             	MOVLW	0x01
+000041   1283     bcf     0x03, 0x5        	BANKSEL	_go
+000042   1703     bsf     0x03, 0x6        
+000043   00bb     movwf   0x3b             	MOVWF	_go
+                                           _00108_DS_
+                                           ;	.line	102; "main.c"	T0IF = 0;
+000044   1283     bcf     0x03, 0x5        	BANKSEL	_INTCONbits
+000045   1303     bcf     0x03, 0x6        
+000046   110b     bcf     0x0b, 0x2        	BCF	_INTCONbits,2
+000047   1283     bcf     0x03, 0x5        	BANKSEL	___sdcc_saved_fsr
+000048   1703     bsf     0x03, 0x6        
+000049   0846     movf    0x46, 0x0        	MOVF	___sdcc_saved_fsr,W
+00004a   1283     bcf     0x03, 0x5        	BANKSEL	FSR
+00004b   1303     bcf     0x03, 0x6        
+00004c   0084     movwf   0x04             	MOVWF	FSR
+00004d   0870     movf    0x70, 0x0        	MOVF	PSAVE,W
+00004e   008a     movwf   0x0a             	MOVWF	PCLATH
+00004f   0183     clrf    0x03             	CLRF	STATUS
+000050   0e71     swapf   0x71, 0x0        	SWAPF	SSAVE,W
+000051   0083     movwf   0x03             	MOVWF	STATUS
+000052   0ef2     swapf   0x72, 0x1        	SWAPF	WSAVE,F
+000053   0e72     swapf   0x72, 0x0        	SWAPF	WSAVE,W
+                                           END_OF_INTERRUPT
+000054   0009     retfie                   	RETFIE	
+                                           
+                                           ;--------------------------------------------------------
+                                           ; code
+                                           ;--------------------------------------------------------
+                                           code_main	code
+                                           ;***
+                                           ;  pBlock Stats: dbName = M
+                                           ;***
+                                           ;entry:  _main	;Function start
+                                           ; 2 exit points
+                                           ;has an exit
+                                           ;functions called:
+                                           ;   _init_hw
+                                           ;   _advance_tick
+                                           ;   _advance_centival
+                                           ;   _advance_interval
+                                           ;   __gptrget1
+                                           ;   _advance_centival
+                                           ;   _advance_interval
+                                           ;   _init_hw
+                                           ;   _advance_tick
+                                           ;   _advance_centival
+                                           ;   _advance_interval
+                                           ;   __gptrget1
+                                           ;   _advance_centival
+                                           ;   _advance_interval
+                                           ;4 compiler assigned registers:
+                                           ;   r0x1019
+                                           ;   r0x101A
+                                           ;   STK01
+                                           ;   STK00
+                                           ;; Starting pCode block
+                                           _main	;Function start
+                                           ; 2 exit points
+                                           ;	.line	174; "main.c"	init_hw(); // Initialize hardware
+000055   20e1     call    0x00e1           	CALL	_init_hw
+                                           _00150_DS_
+                                           ;	.line	178; "main.c"	while (!go); // wait for 4ms flag
+000056   3000     movlw   0x00             	MOVLW	0x00
+000057   1283     bcf     0x03, 0x5        	BANKSEL	_go
+000058   1703     bsf     0x03, 0x6        
+000059   043b     iorwf   0x3b, 0x0        	IORWF	_go,W
+00005a   1903     btfsc   0x03, 0x2        	BTFSC	STATUS,2
+00005b   2856     goto    0x0056           	GOTO	_00150_DS_
+                                           ;	.line	179; "main.c"	go=0;        // reset go flag
+00005c   01bb     clrf    0x3b             	CLRF	_go
+                                           ;	.line	182; "main.c"	if (new_tick) {
+00005d   1283     bcf     0x03, 0x5        	BANKSEL	_new_tick
+00005e   1703     bsf     0x03, 0x6        
+00005f   083d     movf    0x3d, 0x0        	MOVF	_new_tick,W
+000060   1903     btfsc   0x03, 0x2        	BTFSC	STATUS,2
+000061   2871     goto    0x0071           	GOTO	_00158_DS_
+                                           ;	.line	183; "main.c"	new_tick=0;
+000062   01bd     clrf    0x3d             	CLRF	_new_tick
+                                           ;	.line	184; "main.c"	if (advance_tick()) {
+000063   2181     call    0x0181           	CALL	_advance_tick
+000064   1283     bcf     0x03, 0x5        	BANKSEL	r0x1019
+000065   1703     bsf     0x03, 0x6        
+000066   00b0     movwf   0x30             	MOVWF	r0x1019
+000067   0830     movf    0x30, 0x0        	MOVF	r0x1019,W
+000068   1903     btfsc   0x03, 0x2        	BTFSC	STATUS,2
+000069   2871     goto    0x0071           	GOTO	_00158_DS_
+                                           ;	.line	185; "main.c"	if (advance_centival()) {
+00006a   2138     call    0x0138           	CALL	_advance_centival
+00006b   1283     bcf     0x03, 0x5        	BANKSEL	r0x1019
+00006c   1703     bsf     0x03, 0x6        
+00006d   00b0     movwf   0x30             	MOVWF	r0x1019
+                                           ;	.line	186; "main.c"	advance_interval();
+00006e   0830     movf    0x30, 0x0        	MOVF	r0x1019,W
+                                           ;	.line	192; "main.c"	++digit;
+00006f   1d03     btfss   0x03, 0x2        	BTFSS	STATUS,2
+000070   20ef     call    0x00ef           	CALL	_advance_interval
+                                           _00158_DS_
+000071   1283     bcf     0x03, 0x5        	BANKSEL	_digit
+000072   1703     bsf     0x03, 0x6        
+000073   0ac4     incf    0x44, 0x1        	INCF	_digit,F
+                                           ;	.line	193; "main.c"	digit&=3;  // next digit to display
+000074   3003     movlw   0x03             	MOVLW	0x03
+000075   05c4     andwf   0x44, 0x1        	ANDWF	_digit,F
+                                           ;	.line	194; "main.c"	PORTA=common[digit];
+000076   0844     movf    0x44, 0x0        	MOVF	_digit,W
+000077   3ee0     addlw   0xe0             	ADDLW	(_common + 0)
+000078   1283     bcf     0x03, 0x5        	BANKSEL	r0x1019
+000079   1703     bsf     0x03, 0x6        
+00007a   00b0     movwf   0x30             	MOVWF	r0x1019
+00007b   3002     movlw   0x02             	MOVLW	high (_common + 0)
+00007c   1803     btfsc   0x03, 0x0        	BTFSC	STATUS,0
+00007d   3e01     addlw   0x01             	ADDLW	0x01
+00007e   00b1     movwf   0x31             	MOVWF	r0x101A
+00007f   0830     movf    0x30, 0x0        	MOVF	r0x1019,W
+000080   00fe     movwf   0x7e             	MOVWF	STK01
+000081   0831     movf    0x31, 0x0        	MOVF	r0x101A,W
+000082   00ff     movwf   0x7f             	MOVWF	STK00
+000083   3080     movlw   0x80             	MOVLW	0x80
+                                           	PAGESEL	__gptrget1
+000084   229a     call    0x029a           	CALL	__gptrget1
+                                           	PAGESEL	$
+000085   1283     bcf     0x03, 0x5        	BANKSEL	_PORTA
+000086   1303     bcf     0x03, 0x6        
+000087   0085     movwf   0x05             	MOVWF	_PORTA
+                                           ;	.line	195; "main.c"	PORTB=display[digit]; // update display
+000088   1283     bcf     0x03, 0x5        	BANKSEL	_digit
+000089   1703     bsf     0x03, 0x6        
+00008a   0844     movf    0x44, 0x0        	MOVF	_digit,W
+00008b   3e32     addlw   0x32             	ADDLW	(_display + 0)
+00008c   1283     bcf     0x03, 0x5        	BANKSEL	r0x1019
+00008d   1703     bsf     0x03, 0x6        
+00008e   00b0     movwf   0x30             	MOVWF	r0x1019
+00008f   3001     movlw   0x01             	MOVLW	high (_display + 0)
+000090   1803     btfsc   0x03, 0x0        	BTFSC	STATUS,0
+000091   3e01     addlw   0x01             	ADDLW	0x01
+000092   00b1     movwf   0x31             	MOVWF	r0x101A
+000093   0830     movf    0x30, 0x0        	MOVF	r0x1019,W
+000094   1283     bcf     0x03, 0x5        	BANKSEL	FSR
+000095   1303     bcf     0x03, 0x6        
+000096   0084     movwf   0x04             	MOVWF	FSR
+000097   1383     bcf     0x03, 0x7        	BCF	STATUS,7
+000098   1283     bcf     0x03, 0x5        	BANKSEL	r0x101A
+000099   1703     bsf     0x03, 0x6        
+00009a   1831     btfsc   0x31, 0x0        	BTFSC	r0x101A,0
+00009b   1783     bsf     0x03, 0x7        	BSF	STATUS,7
+00009c   1283     bcf     0x03, 0x5        	BANKSEL	INDF
+00009d   1303     bcf     0x03, 0x6        
+00009e   0800     movf    0x00, 0x0        	MOVF	INDF,W
+00009f   0086     movwf   0x06             	MOVWF	_PORTB
+                                           ;	.line	198; "main.c"	if (PORTA & BUTTON1) { // Release
+0000a0   3010     movlw   0x10             	MOVLW	0x10
+0000a1   0505     andwf   0x05, 0x0        	ANDWF	_PORTA,W
+0000a2   1283     bcf     0x03, 0x5        	BANKSEL	r0x1019
+0000a3   1703     bsf     0x03, 0x6        
+0000a4   00b0     movwf   0x30             	MOVWF	r0x1019
+0000a5   1283     bcf     0x03, 0x5        	BANKSEL	_PORTA
+0000a6   1303     bcf     0x03, 0x6        
+0000a7   0805     movf    0x05, 0x0        	MOVF	_PORTA,W
+0000a8   1283     bcf     0x03, 0x5        	BANKSEL	r0x1019
+0000a9   1703     bsf     0x03, 0x6        
+0000aa   05b0     andwf   0x30, 0x1        	ANDWF	r0x1019,F
+0000ab   0830     movf    0x30, 0x0        	MOVF	r0x1019,W
+0000ac   1903     btfsc   0x03, 0x2        	BTFSC	STATUS,2
+0000ad   28b8     goto    0x00b8           	GOTO	_00164_DS_
+                                           ;;swapping arguments (AOP_TYPEs 1/3)
+                                           ;;unsigned compare: left >= lit(0xB=11), size=1
+                                           ;	.line	199; "main.c"	if (Time_B1_Pressed > _t40ms) {
+0000ae   300b     movlw   0x0b             	MOVLW	0x0b
+                                           ;	.line	200; "main.c"	advance_centival();
+0000af   1283     bcf     0x03, 0x5        	BANKSEL	_Time_B1_Pressed
+0000b0   1703     bsf     0x03, 0x6        
+0000b1   023a     subwf   0x3a, 0x0        	SUBWF	_Time_B1_Pressed,W
+                                           ;	.line	202; "main.c"	Time_B1_Pressed =0;
+0000b2   1803     btfsc   0x03, 0x0        	BTFSC	STATUS,0
+0000b3   2138     call    0x0138           	CALL	_advance_centival
+0000b4   1283     bcf     0x03, 0x5        	BANKSEL	_Time_B1_Pressed
+0000b5   1703     bsf     0x03, 0x6        
+0000b6   01ba     clrf    0x3a             	CLRF	_Time_B1_Pressed
+0000b7   28be     goto    0x00be           	GOTO	_00165_DS_
+                                           ;;unsigned compare: left < lit(0xFF=255), size=1
+                                           _00164_DS_
+                                           ;	.line	204; "main.c"	if (Time_B1_Pressed<255) Time_B1_Pressed++;
+0000b8   30ff     movlw   0xff             	MOVLW	0xff
+                                           ;	.line	207; "main.c"	if (PORTA & BUTTON2) { // Release
+0000b9   1283     bcf     0x03, 0x5        	BANKSEL	_Time_B1_Pressed
+0000ba   1703     bsf     0x03, 0x6        
+0000bb   023a     subwf   0x3a, 0x0        	SUBWF	_Time_B1_Pressed,W
+0000bc   1c03     btfss   0x03, 0x0        	BTFSS	STATUS,0
+0000bd   0aba     incf    0x3a, 0x1        	INCF	_Time_B1_Pressed,F
+                                           _00165_DS_
+0000be   3020     movlw   0x20             	MOVLW	0x20
+0000bf   1283     bcf     0x03, 0x5        	BANKSEL	_PORTA
+0000c0   1303     bcf     0x03, 0x6        
+0000c1   0505     andwf   0x05, 0x0        	ANDWF	_PORTA,W
+0000c2   1283     bcf     0x03, 0x5        	BANKSEL	r0x1019
+0000c3   1703     bsf     0x03, 0x6        
+0000c4   00b0     movwf   0x30             	MOVWF	r0x1019
+0000c5   1283     bcf     0x03, 0x5        	BANKSEL	_PORTA
+0000c6   1303     bcf     0x03, 0x6        
+0000c7   0805     movf    0x05, 0x0        	MOVF	_PORTA,W
+0000c8   1283     bcf     0x03, 0x5        	BANKSEL	r0x1019
+0000c9   1703     bsf     0x03, 0x6        
+0000ca   05b0     andwf   0x30, 0x1        	ANDWF	r0x1019,F
+0000cb   0830     movf    0x30, 0x0        	MOVF	r0x1019,W
+0000cc   1903     btfsc   0x03, 0x2        	BTFSC	STATUS,2
+0000cd   28d8     goto    0x00d8           	GOTO	_00171_DS_
+                                           ;;swapping arguments (AOP_TYPEs 1/3)
+                                           ;;unsigned compare: left >= lit(0xB=11), size=1
+                                           ;	.line	208; "main.c"	if (Time_B2_Pressed > _t40ms) {
+0000ce   300b     movlw   0x0b             	MOVLW	0x0b
+                                           ;	.line	209; "main.c"	advance_interval();
+0000cf   1283     bcf     0x03, 0x5        	BANKSEL	_Time_B2_Pressed
+0000d0   1703     bsf     0x03, 0x6        
+0000d1   0245     subwf   0x45, 0x0        	SUBWF	_Time_B2_Pressed,W
+                                           ;	.line	211; "main.c"	Time_B2_Pressed =0;
+0000d2   1803     btfsc   0x03, 0x0        	BTFSC	STATUS,0
+0000d3   20ef     call    0x00ef           	CALL	_advance_interval
+0000d4   1283     bcf     0x03, 0x5        	BANKSEL	_Time_B2_Pressed
+0000d5   1703     bsf     0x03, 0x6        
+0000d6   01c5     clrf    0x45             	CLRF	_Time_B2_Pressed
+0000d7   2856     goto    0x0056           	GOTO	_00150_DS_
+                                           ;;unsigned compare: left < lit(0xFF=255), size=1
+                                           _00171_DS_
+                                           ;	.line	213; "main.c"	if (Time_B2_Pressed<255) Time_B2_Pressed++;
+0000d8   30ff     movlw   0xff             	MOVLW	0xff
+0000d9   1283     bcf     0x03, 0x5        	BANKSEL	_Time_B2_Pressed
+0000da   1703     bsf     0x03, 0x6        
+0000db   0245     subwf   0x45, 0x0        	SUBWF	_Time_B2_Pressed,W
+0000dc   1803     btfsc   0x03, 0x0        	BTFSC	STATUS,0
+0000dd   2856     goto    0x0056           	GOTO	_00150_DS_
+                                           ;;genSkipc:3247: created from rifx:00000000047558E0
+0000de   0ac5     incf    0x45, 0x1        	INCF	_Time_B2_Pressed,F
+0000df   2856     goto    0x0056           	GOTO	_00150_DS_
+0000e0   0008     return                   	RETURN	
+                                           ; exit point of _main
+                                           
+                                           ;***
+                                           ;  pBlock Stats: dbName = C
+                                           ;***
+                                           ;entry:  _init_hw	;Function start
+                                           ; 2 exit points
+                                           ;has an exit
+                                           ;; Starting pCode block
+                                           _init_hw	;Function start
+                                           ; 2 exit points
+                                           ;	.line	160; "main.c"	TRISB=0b00000000; // All as outputs (segments) 
+0000e1   1683     bsf     0x03, 0x5        	BANKSEL	_TRISB
+0000e2   1303     bcf     0x03, 0x6        
+0000e3   0186     clrf    0x06             	CLRF	_TRISB
+                                           ;	.line	161; "main.c"	TRISA=0b11110000; // bits [3..0] as outputs (common a/k)
+0000e4   30f0     movlw   0xf0             	MOVLW	0xf0
+0000e5   0085     movwf   0x05             	MOVWF	_TRISA
+                                           ;	.line	164; "main.c"	OPTION_REG = 0b11011111;  // Timer0 internal clock, 1:1 rate (prescaler to wdt)
+0000e6   30df     movlw   0xdf             	MOVLW	0xdf
+0000e7   0081     movwf   0x01             	MOVWF	_OPTION_REG
+                                           ;	.line	165; "main.c"	TMR0  =0;
+0000e8   1283     bcf     0x03, 0x5        	BANKSEL	_TMR0
+0000e9   1303     bcf     0x03, 0x6        
+0000ea   0181     clrf    0x01             	CLRF	_TMR0
+                                           ;	.line	166; "main.c"	T0IF  = 0;
+0000eb   110b     bcf     0x0b, 0x2        	BCF	_INTCONbits,2
+                                           ;	.line	167; "main.c"	INTCON     = 0b10100000;  // enable timer0 and global interrupts
+0000ec   30a0     movlw   0xa0             	MOVLW	0xa0
+0000ed   008b     movwf   0x0b             	MOVWF	_INTCON
+0000ee   0008     return                   	RETURN	
+                                           ; exit point of _init_hw
+                                           
+                                           ;***
+                                           ;  pBlock Stats: dbName = C
+                                           ;***
+                                           ;entry:  _advance_interval	;Function start
+                                           ; 2 exit points
+                                           ;has an exit
+                                           ;functions called:
+                                           ;   __gptrget1
+                                           ;   __gptrget1
+                                           ;   __gptrget1
+                                           ;   __gptrget1
+                                           ;6 compiler assigned registers:
+                                           ;   r0x1015
+                                           ;   r0x1016
+                                           ;   r0x1017
+                                           ;   STK01
+                                           ;   STK00
+                                           ;   r0x1018
+                                           ;; Starting pCode block
+                                           _advance_interval	;Function start
+                                           ; 2 exit points
+                                           ;	.line	143; "main.c"	unsigned char r=0;
+0000ef   1283     bcf     0x03, 0x5        	BANKSEL	r0x1015
+0000f0   1703     bsf     0x03, 0x6        
+0000f1   01ac     clrf    0x2c             	CLRF	r0x1015
+                                           ;	.line	145; "main.c"	if (++interval_01>9) {
+0000f2   1283     bcf     0x03, 0x5        	BANKSEL	_interval_01
+0000f3   1703     bsf     0x03, 0x6        
+0000f4   0ac0     incf    0x40, 0x1        	INCF	_interval_01,F
+                                           ;;swapping arguments (AOP_TYPEs 1/3)
+                                           ;;unsigned compare: left >= lit(0xA=10), size=1
+0000f5   300a     movlw   0x0a             	MOVLW	0x0a
+0000f6   0240     subwf   0x40, 0x0        	SUBWF	_interval_01,W
+0000f7   1c03     btfss   0x03, 0x0        	BTFSS	STATUS,0
+0000f8   2906     goto    0x0106           	GOTO	_00141_DS_
+                                           ;;genSkipc:3247: created from rifx:00000000047558E0
+                                           ;	.line	146; "main.c"	interval_01=0;
+0000f9   01c0     clrf    0x40             	CLRF	_interval_01
+                                           ;	.line	147; "main.c"	if (++interval_10>9){
+0000fa   1283     bcf     0x03, 0x5        	BANKSEL	_interval_10
+0000fb   1703     bsf     0x03, 0x6        
+0000fc   0ac1     incf    0x41, 0x1        	INCF	_interval_10,F
+                                           ;;swapping arguments (AOP_TYPEs 1/3)
+                                           ;;unsigned compare: left >= lit(0xA=10), size=1
+0000fd   300a     movlw   0x0a             	MOVLW	0x0a
+0000fe   0241     subwf   0x41, 0x0        	SUBWF	_interval_10,W
+0000ff   1c03     btfss   0x03, 0x0        	BTFSS	STATUS,0
+000100   2906     goto    0x0106           	GOTO	_00141_DS_
+                                           ;;genSkipc:3247: created from rifx:00000000047558E0
+                                           ;	.line	148; "main.c"	interval_10=0;
+000101   01c1     clrf    0x41             	CLRF	_interval_10
+                                           ;	.line	149; "main.c"	r=1;   // overflow
+000102   3001     movlw   0x01             	MOVLW	0x01
+000103   1283     bcf     0x03, 0x5        	BANKSEL	r0x1015
+000104   1703     bsf     0x03, 0x6        
+000105   00ac     movwf   0x2c             	MOVWF	r0x1015
+                                           _00141_DS_
+                                           ;	.line	153; "main.c"	display [1] = digits[interval_01];
+000106   1283     bcf     0x03, 0x5        	BANKSEL	_interval_01
+000107   1703     bsf     0x03, 0x6        
+000108   0840     movf    0x40, 0x0        	MOVF	_interval_01,W
+000109   3ece     addlw   0xce             	ADDLW	(_digits + 0)
+00010a   1283     bcf     0x03, 0x5        	BANKSEL	r0x1016
+00010b   1703     bsf     0x03, 0x6        
+00010c   00ad     movwf   0x2d             	MOVWF	r0x1016
+00010d   3002     movlw   0x02             	MOVLW	high (_digits + 0)
+00010e   1803     btfsc   0x03, 0x0        	BTFSC	STATUS,0
+00010f   3e01     addlw   0x01             	ADDLW	0x01
+000110   00ae     movwf   0x2e             	MOVWF	r0x1017
+000111   082d     movf    0x2d, 0x0        	MOVF	r0x1016,W
+000112   00fe     movwf   0x7e             	MOVWF	STK01
+000113   082e     movf    0x2e, 0x0        	MOVF	r0x1017,W
+000114   00ff     movwf   0x7f             	MOVWF	STK00
+000115   3080     movlw   0x80             	MOVLW	0x80
+                                           	PAGESEL	__gptrget1
+000116   229a     call    0x029a           	CALL	__gptrget1
+                                           	PAGESEL	$
+000117   1283     bcf     0x03, 0x5        	BANKSEL	r0x1018
+000118   1703     bsf     0x03, 0x6        
+000119   00af     movwf   0x2f             	MOVWF	r0x1018
+00011a   1283     bcf     0x03, 0x5        	BANKSEL	_display
+00011b   1703     bsf     0x03, 0x6        
+00011c   00b3     movwf   0x33             	MOVWF	(_display + 1)
+                                           ;	.line	154; "main.c"	display [0] = digits[interval_10];		
+00011d   1283     bcf     0x03, 0x5        	BANKSEL	_interval_10
+00011e   1703     bsf     0x03, 0x6        
+00011f   0841     movf    0x41, 0x0        	MOVF	_interval_10,W
+000120   3ece     addlw   0xce             	ADDLW	(_digits + 0)
+000121   1283     bcf     0x03, 0x5        	BANKSEL	r0x1016
+000122   1703     bsf     0x03, 0x6        
+000123   00ad     movwf   0x2d             	MOVWF	r0x1016
+000124   3002     movlw   0x02             	MOVLW	high (_digits + 0)
+000125   1803     btfsc   0x03, 0x0        	BTFSC	STATUS,0
+000126   3e01     addlw   0x01             	ADDLW	0x01
+000127   00ae     movwf   0x2e             	MOVWF	r0x1017
+000128   082d     movf    0x2d, 0x0        	MOVF	r0x1016,W
+000129   00fe     movwf   0x7e             	MOVWF	STK01
+00012a   082e     movf    0x2e, 0x0        	MOVF	r0x1017,W
+00012b   00ff     movwf   0x7f             	MOVWF	STK00
+00012c   3080     movlw   0x80             	MOVLW	0x80
+                                           	PAGESEL	__gptrget1
+00012d   229a     call    0x029a           	CALL	__gptrget1
+                                           	PAGESEL	$
+00012e   1283     bcf     0x03, 0x5        	BANKSEL	r0x1018
+00012f   1703     bsf     0x03, 0x6        
+000130   00af     movwf   0x2f             	MOVWF	r0x1018
+000131   1283     bcf     0x03, 0x5        	BANKSEL	_display
+000132   1703     bsf     0x03, 0x6        
+000133   00b2     movwf   0x32             	MOVWF	(_display + 0)
+                                           ;	.line	155; "main.c"	return r;
+000134   1283     bcf     0x03, 0x5        	BANKSEL	r0x1015
+000135   1703     bsf     0x03, 0x6        
+000136   082c     movf    0x2c, 0x0        	MOVF	r0x1015,W
+000137   0008     return                   	RETURN	
+                                           ; exit point of _advance_interval
+                                           
+                                           ;***
+                                           ;  pBlock Stats: dbName = C
+                                           ;***
+                                           ;entry:  _advance_centival	;Function start
+                                           ; 2 exit points
+                                           ;has an exit
+                                           ;functions called:
+                                           ;   __gptrget1
+                                           ;   __gptrget1
+                                           ;   __gptrget1
+                                           ;   __gptrget1
+                                           ;6 compiler assigned registers:
+                                           ;   r0x1015
+                                           ;   r0x1016
+                                           ;   r0x1017
+                                           ;   STK01
+                                           ;   STK00
+                                           ;   r0x1018
+                                           ;; Starting pCode block
+                                           _advance_centival	;Function start
+                                           ; 2 exit points
+                                           ;	.line	126; "main.c"	unsigned char r=0;
+000138   1283     bcf     0x03, 0x5        	BANKSEL	r0x1015
+000139   1703     bsf     0x03, 0x6        
+00013a   01ac     clrf    0x2c             	CLRF	r0x1015
+                                           ;	.line	128; "main.c"	if ((++centival_01)>9) {
+00013b   1283     bcf     0x03, 0x5        	BANKSEL	_centival_01
+00013c   1703     bsf     0x03, 0x6        
+00013d   0ac2     incf    0x42, 0x1        	INCF	_centival_01,F
+                                           ;;swapping arguments (AOP_TYPEs 1/3)
+                                           ;;unsigned compare: left >= lit(0xA=10), size=1
+00013e   300a     movlw   0x0a             	MOVLW	0x0a
+00013f   0242     subwf   0x42, 0x0        	SUBWF	_centival_01,W
+000140   1c03     btfss   0x03, 0x0        	BTFSS	STATUS,0
+000141   294f     goto    0x014f           	GOTO	_00133_DS_
+                                           ;;genSkipc:3247: created from rifx:00000000047558E0
+                                           ;	.line	129; "main.c"	centival_01=0;
+000142   01c2     clrf    0x42             	CLRF	_centival_01
+                                           ;	.line	130; "main.c"	if ((++centival_10)>9){
+000143   1283     bcf     0x03, 0x5        	BANKSEL	_centival_10
+000144   1703     bsf     0x03, 0x6        
+000145   0ac3     incf    0x43, 0x1        	INCF	_centival_10,F
+                                           ;;swapping arguments (AOP_TYPEs 1/3)
+                                           ;;unsigned compare: left >= lit(0xA=10), size=1
+000146   300a     movlw   0x0a             	MOVLW	0x0a
+000147   0243     subwf   0x43, 0x0        	SUBWF	_centival_10,W
+000148   1c03     btfss   0x03, 0x0        	BTFSS	STATUS,0
+000149   294f     goto    0x014f           	GOTO	_00133_DS_
+                                           ;;genSkipc:3247: created from rifx:00000000047558E0
+                                           ;	.line	131; "main.c"	centival_10=0;
+00014a   01c3     clrf    0x43             	CLRF	_centival_10
+                                           ;	.line	132; "main.c"	r=1;   // overflow
+00014b   3001     movlw   0x01             	MOVLW	0x01
+00014c   1283     bcf     0x03, 0x5        	BANKSEL	r0x1015
+00014d   1703     bsf     0x03, 0x6        
+00014e   00ac     movwf   0x2c             	MOVWF	r0x1015
+                                           _00133_DS_
+                                           ;	.line	136; "main.c"	display [3] = digits[centival_01];
+00014f   1283     bcf     0x03, 0x5        	BANKSEL	_centival_01
+000150   1703     bsf     0x03, 0x6        
+000151   0842     movf    0x42, 0x0        	MOVF	_centival_01,W
+000152   3ece     addlw   0xce             	ADDLW	(_digits + 0)
+000153   1283     bcf     0x03, 0x5        	BANKSEL	r0x1016
+000154   1703     bsf     0x03, 0x6        
+000155   00ad     movwf   0x2d             	MOVWF	r0x1016
+000156   3002     movlw   0x02             	MOVLW	high (_digits + 0)
+000157   1803     btfsc   0x03, 0x0        	BTFSC	STATUS,0
+000158   3e01     addlw   0x01             	ADDLW	0x01
+000159   00ae     movwf   0x2e             	MOVWF	r0x1017
+00015a   082d     movf    0x2d, 0x0        	MOVF	r0x1016,W
+00015b   00fe     movwf   0x7e             	MOVWF	STK01
+00015c   082e     movf    0x2e, 0x0        	MOVF	r0x1017,W
+00015d   00ff     movwf   0x7f             	MOVWF	STK00
+00015e   3080     movlw   0x80             	MOVLW	0x80
+                                           	PAGESEL	__gptrget1
+00015f   229a     call    0x029a           	CALL	__gptrget1
+                                           	PAGESEL	$
+000160   1283     bcf     0x03, 0x5        	BANKSEL	r0x1018
+000161   1703     bsf     0x03, 0x6        
+000162   00af     movwf   0x2f             	MOVWF	r0x1018
+000163   1283     bcf     0x03, 0x5        	BANKSEL	_display
+000164   1703     bsf     0x03, 0x6        
+000165   00b5     movwf   0x35             	MOVWF	(_display + 3)
+                                           ;	.line	137; "main.c"	display [2] = digits[centival_10];	
+000166   1283     bcf     0x03, 0x5        	BANKSEL	_centival_10
+000167   1703     bsf     0x03, 0x6        
+000168   0843     movf    0x43, 0x0        	MOVF	_centival_10,W
+000169   3ece     addlw   0xce             	ADDLW	(_digits + 0)
+00016a   1283     bcf     0x03, 0x5        	BANKSEL	r0x1016
+00016b   1703     bsf     0x03, 0x6        
+00016c   00ad     movwf   0x2d             	MOVWF	r0x1016
+00016d   3002     movlw   0x02             	MOVLW	high (_digits + 0)
+00016e   1803     btfsc   0x03, 0x0        	BTFSC	STATUS,0
+00016f   3e01     addlw   0x01             	ADDLW	0x01
+000170   00ae     movwf   0x2e             	MOVWF	r0x1017
+000171   082d     movf    0x2d, 0x0        	MOVF	r0x1016,W
+000172   00fe     movwf   0x7e             	MOVWF	STK01
+000173   082e     movf    0x2e, 0x0        	MOVF	r0x1017,W
+000174   00ff     movwf   0x7f             	MOVWF	STK00
+000175   3080     movlw   0x80             	MOVLW	0x80
+                                           	PAGESEL	__gptrget1
+000176   229a     call    0x029a           	CALL	__gptrget1
+                                           	PAGESEL	$
+000177   1283     bcf     0x03, 0x5        	BANKSEL	r0x1018
+000178   1703     bsf     0x03, 0x6        
+000179   00af     movwf   0x2f             	MOVWF	r0x1018
+00017a   1283     bcf     0x03, 0x5        	BANKSEL	_display
+00017b   1703     bsf     0x03, 0x6        
+00017c   00b4     movwf   0x34             	MOVWF	(_display + 2)
+                                           ;	.line	138; "main.c"	return r;
+00017d   1283     bcf     0x03, 0x5        	BANKSEL	r0x1015
+00017e   1703     bsf     0x03, 0x6        
+00017f   082c     movf    0x2c, 0x0        	MOVF	r0x1015,W
+000180   0008     return                   	RETURN	
+                                           ; exit point of _advance_centival
+                                           
+                                           ;***
+                                           ;  pBlock Stats: dbName = C
+                                           ;***
+                                           ;entry:  _advance_tick	;Function start
+                                           ; 2 exit points
+                                           ;has an exit
+                                           ;2 compiler assigned registers:
+                                           ;   r0x1015
+                                           ;   r0x1016
+                                           ;; Starting pCode block
+                                           _advance_tick	;Function start
+                                           ; 2 exit points
+                                           ;	.line	108; "main.c"	unsigned char r=0;
+000181   1283     bcf     0x03, 0x5        	BANKSEL	r0x1015
+000182   1703     bsf     0x03, 0x6        
+000183   01ac     clrf    0x2c             	CLRF	r0x1015
+                                           ;	.line	110; "main.c"	if ((++tick_01)>9) {
+000184   1283     bcf     0x03, 0x5        	BANKSEL	_tick_01
+000185   1703     bsf     0x03, 0x6        
+000186   0abe     incf    0x3e, 0x1        	INCF	_tick_01,F
+                                           ;;swapping arguments (AOP_TYPEs 1/3)
+                                           ;;unsigned compare: left >= lit(0xA=10), size=1
+000187   300a     movlw   0x0a             	MOVLW	0x0a
+000188   023e     subwf   0x3e, 0x0        	SUBWF	_tick_01,W
+000189   1c03     btfss   0x03, 0x0        	BTFSS	STATUS,0
+00018a   29a4     goto    0x01a4           	GOTO	_00125_DS_
+                                           ;;genSkipc:3247: created from rifx:00000000047558E0
+                                           ;	.line	111; "main.c"	tick_01=0;
+00018b   01be     clrf    0x3e             	CLRF	_tick_01
+                                           ;	.line	113; "main.c"	if ((++tick_10)>9){
+00018c   1283     bcf     0x03, 0x5        	BANKSEL	_tick_10
+00018d   1703     bsf     0x03, 0x6        
+00018e   0abf     incf    0x3f, 0x1        	INCF	_tick_10,F
+                                           ;;swapping arguments (AOP_TYPEs 1/3)
+                                           ;;unsigned compare: left >= lit(0xA=10), size=1
+00018f   300a     movlw   0x0a             	MOVLW	0x0a
+000190   023f     subwf   0x3f, 0x0        	SUBWF	_tick_10,W
+000191   1c03     btfss   0x03, 0x0        	BTFSS	STATUS,0
+000192   2998     goto    0x0198           	GOTO	_00123_DS_
+                                           ;;genSkipc:3247: created from rifx:00000000047558E0
+                                           ;	.line	114; "main.c"	tick_10=0;
+000193   01bf     clrf    0x3f             	CLRF	_tick_10
+                                           ;	.line	115; "main.c"	r=1;   // overflow
+000194   3001     movlw   0x01             	MOVLW	0x01
+000195   1283     bcf     0x03, 0x5        	BANKSEL	r0x1015
+000196   1703     bsf     0x03, 0x6        
+000197   00ac     movwf   0x2c             	MOVWF	r0x1015
+                                           _00123_DS_
+                                           ;	.line	118; "main.c"	display [1] ^= _decimal_point;
+000198   1283     bcf     0x03, 0x5        	BANKSEL	_display
+000199   1703     bsf     0x03, 0x6        
+00019a   0833     movf    0x33, 0x0        	MOVF	(_display + 1),W
+00019b   1283     bcf     0x03, 0x5        	BANKSEL	r0x1016
+00019c   1703     bsf     0x03, 0x6        
+00019d   00ad     movwf   0x2d             	MOVWF	r0x1016
+00019e   3040     movlw   0x40             	MOVLW	0x40
+00019f   06ad     xorwf   0x2d, 0x1        	XORWF	r0x1016,F
+                                           ;;/home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:6461: size=0, offset=0, AOP_TYPE(res)=8
+0001a0   082d     movf    0x2d, 0x0        	MOVF	r0x1016,W
+0001a1   1283     bcf     0x03, 0x5        	BANKSEL	_display
+0001a2   1703     bsf     0x03, 0x6        
+0001a3   00b3     movwf   0x33             	MOVWF	(_display + 1)
+                                           _00125_DS_
+                                           ;	.line	121; "main.c"	return r;
+0001a4   1283     bcf     0x03, 0x5        	BANKSEL	r0x1015
+0001a5   1703     bsf     0x03, 0x6        
+0001a6   082c     movf    0x2c, 0x0        	MOVF	r0x1015,W
+0001a7   0008     return                   	RETURN	
+                                           ; exit point of _advance_tick
+                                           
+                                           
+                                           ;	code size estimation:
+                                           ;	  280+   80 =   360 instructions (  880 byte)
+                                           
+                                           	end
