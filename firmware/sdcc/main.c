@@ -46,8 +46,8 @@ uint16_t __at _CONFIG configWord = _HS_OSC & _WDT_OFF & _PWRTE_ON & _MCLRE_OFF &
 
 #define _decimal_point (1<<6) // bit where dp is mapped
 
-#define BUTTON1 (PORTA & (1<<4))  // RA4
-#define BUTTON2 (PORTA & (1<<5))  // RA5
+#define BUTTON1 ((PORTA & (1<<4)))  // RA4
+#define BUTTON2 ((PORTA & (1<<5)))  // RA5
 #define BYTE unsigned char
 
 // ****** SFR Definitions ******
@@ -195,22 +195,22 @@ void main (void) {
 		PORTB=display[digit]; // update display
 
 		// Test for buttons
-		if (PORTA & BUTTON1) { // Release
+		if (BUTTON1) { // button pressed
+			if (Time_B1_Pressed<255) Time_B1_Pressed++;	
+		} else {       // Release
 			if (Time_B1_Pressed > _t40ms) {
 				advance_centival();
 			}
 			Time_B1_Pressed =0;
-		} else {// button pressed
-			if (Time_B1_Pressed<255) Time_B1_Pressed++;
 		}
 
-		if (PORTA & BUTTON2) { // Release
+		if (BUTTON2) { // button pressed
+			if (Time_B2_Pressed<255) Time_B2_Pressed++;	
+		} else {       // Release
 			if (Time_B2_Pressed > _t40ms) {
 				advance_interval();
 			}
 			Time_B2_Pressed =0;
-		} else {// button pressed
-			if (Time_B2_Pressed<255) Time_B2_Pressed++;
 		}		
 	} // end of main loop
 }
