@@ -10,10 +10,10 @@ from Tkinter import *
 import time
 root = Tk()
 time1 = ''
-title1 = Label(root, font=('times', 15, 'bold'), bg='red', text='Conventional Time')
-title2 = Label(root, font=('times', 15, 'bold'), bg='green', text='Decimal Time')
-clock = Label(root, font=('times', 40, 'bold'), bg='red')
-dc10 = Label(root, font=('times', 40, 'bold'), bg='green')
+title1 = Label(root, font=('times', 15, 'bold'), bg='black', fg='#bd9f5c',text='Conventional Time')
+title2 = Label(root, font=('times', 15, 'bold'), fg='black', bg='#bd9f5c', text='Decimal Time')
+clock = Label(root, font=('times', 40, 'bold'), fg='#bd9f5c', bg='black')
+dc10  = Label(root, font=('times', 40, 'bold'), bg='#bd9f5c', fg='black')
 title1.pack(fill=BOTH, expand=1)
 clock.pack(fill=BOTH, expand=1)
 title2.pack(fill=BOTH, expand=1)
