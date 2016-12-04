@@ -5,15 +5,16 @@
 # based on vegasead Tkinter digital clock
 # https://www.daniweb.com/programming/software-development/code/216785/tkinter-digital-clock-python
 #
+#
 
 from Tkinter import *
 import time
 root = Tk()
 time1 = ''
-title1 = Label(root, font=('times', 15, 'bold'), bg='red', text='Conventional Time')
-title2 = Label(root, font=('times', 15, 'bold'), bg='green', text='Decimal Time')
-clock = Label(root, font=('times', 40, 'bold'), bg='red')
-dc10 = Label(root, font=('times', 40, 'bold'), bg='green')
+title1 = Label(root, font=('times', 15, 'bold'), bg='black', fg='#bd9f5c',text='Conventional Time')
+title2 = Label(root, font=('times', 15, 'bold'), fg='black', bg='#bd9f5c', text='Decimal Time')
+clock = Label(root, font=('times', 40, 'bold'), fg='#bd9f5c', bg='black')
+dc10  = Label(root, font=('times', 40, 'bold'), bg='#bd9f5c', fg='black')
 title1.pack(fill=BOTH, expand=1)
 clock.pack(fill=BOTH, expand=1)
 title2.pack(fill=BOTH, expand=1)
@@ -27,8 +28,8 @@ def tick():
     #get the total amount of seconds from midnight
     t=time.localtime()
     seconds_run = t.tm_sec + 60 * t.tm_min + 60*60*t.tm_hour
-    # add 6 hours offset. C10 time begin at 6:00 (AM)
-    dc10_seconds = ( 6 * 60 * 60 + seconds_run ) % ( 60*60*24 )
+    # subtract 6 hours offset. C10 time begin at 6:00 (AM)
+    dc10_seconds = ( 18 * 60 * 60 + seconds_run ) % ( 60*60*24 )
 
     #format string
     dc10_time = '0000' + str (dc10_seconds * 10000 / (60 * 60 * 24))    
