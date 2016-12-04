@@ -5,6 +5,7 @@
 # based on vegasead Tkinter digital clock
 # https://www.daniweb.com/programming/software-development/code/216785/tkinter-digital-clock-python
 #
+#
 
 from Tkinter import *
 import time
