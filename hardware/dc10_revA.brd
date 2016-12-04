@@ -8,19 +8,19 @@
 </settings>
 <grid distance="0.0125" unitdist="inch" unit="inch" style="dots" multiple="4" display="yes" altdistance="0.0125" altunitdist="inch" altunit="inch"/>
 <layers>
-<layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
-<layer number="16" name="Bottom" color="1" fill="1" visible="no" active="yes"/>
+<layer number="1" name="Top" color="4" fill="1" visible="no" active="yes"/>
+<layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="yes"/>
 <layer number="17" name="Pads" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="18" name="Vias" color="2" fill="1" visible="yes" active="yes"/>
-<layer number="19" name="Unrouted" color="6" fill="1" visible="yes" active="yes"/>
+<layer number="19" name="Unrouted" color="6" fill="1" visible="no" active="yes"/>
 <layer number="20" name="Dimension" color="15" fill="1" visible="yes" active="yes"/>
-<layer number="21" name="tPlace" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="21" name="tPlace" color="7" fill="1" visible="no" active="yes"/>
 <layer number="22" name="bPlace" color="7" fill="1" visible="no" active="yes"/>
-<layer number="23" name="tOrigins" color="15" fill="1" visible="yes" active="yes"/>
+<layer number="23" name="tOrigins" color="15" fill="1" visible="no" active="yes"/>
 <layer number="24" name="bOrigins" color="15" fill="1" visible="no" active="yes"/>
-<layer number="25" name="tNames" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="25" name="tNames" color="7" fill="1" visible="no" active="yes"/>
 <layer number="26" name="bNames" color="7" fill="1" visible="no" active="yes"/>
-<layer number="27" name="tValues" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="27" name="tValues" color="7" fill="1" visible="no" active="yes"/>
 <layer number="28" name="bValues" color="7" fill="1" visible="no" active="yes"/>
 <layer number="29" name="tStop" color="7" fill="3" visible="no" active="yes"/>
 <layer number="30" name="bStop" color="7" fill="6" visible="no" active="yes"/>
@@ -59,10 +59,10 @@
 </layers>
 <board>
 <plain>
-<wire x1="14.605" y1="15.24" x2="14.605" y2="57.15" width="0.3048" layer="20"/>
-<wire x1="14.605" y1="57.15" x2="74.295" y2="57.15" width="0.3048" layer="20"/>
-<wire x1="74.295" y1="57.15" x2="74.295" y2="15.24" width="0.3048" layer="20"/>
-<wire x1="74.295" y1="15.24" x2="14.605" y2="15.24" width="0.3048" layer="20"/>
+<wire x1="14.605" y1="15.24" x2="14.605" y2="57.15" width="0.2032" layer="20"/>
+<wire x1="14.605" y1="57.15" x2="74.295" y2="57.15" width="0.2032" layer="20"/>
+<wire x1="74.295" y1="57.15" x2="74.295" y2="15.24" width="0.2032" layer="20"/>
+<wire x1="74.295" y1="15.24" x2="14.605" y2="15.24" width="0.2032" layer="20"/>
 <wire x1="20.32" y1="30.7975" x2="58.42" y2="30.7975" width="0.3048" layer="100" style="shortdash"/>
 <wire x1="66.04" y1="30.7975" x2="64.77" y2="29.5275" width="0.3048" layer="100" style="shortdash"/>
 <wire x1="64.77" y1="29.5275" x2="40.64" y2="29.5275" width="0.3048" layer="100" style="shortdash"/>
