@@ -28,5 +28,17 @@
 *.x86_64
 *.hex
 
+# intermediary files
+*.asm
+*.cod
+*.lst
+
+
 # Debug files
 *.dSYM/
+
+
+#Eagle temp files
+*.b#*
+*.s#*
+*.l#*
