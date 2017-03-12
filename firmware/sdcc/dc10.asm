@@ -1,14 +1,14 @@
 ;--------------------------------------------------------
 ; File Created by SDCC : free open source ANSI-C Compiler
 ; Version 3.5.0 #9253 (Jun 20 2015) (MINGW64)
-; This file was generated Sat Nov 26 03:09:07 2016
+; This file was generated Sun Dec 04 16:10:09 2016
 ;--------------------------------------------------------
 ; PIC port for the 14-bit core
 ;--------------------------------------------------------
 ;	.file	"main.c"
-	list	p=16f628
+	list	p=16f628a
 	radix dec
-	include "p16f628.inc"
+	include "p16f628a.inc"
 ;--------------------------------------------------------
 ; config word(s)
 ;--------------------------------------------------------
@@ -205,10 +205,10 @@ _digit
 
 ID_main_10	idata
 _display
-	db	0x50
-	db	0x50
-	db	0x50
-	db	0x50
+	db	0x7e
+	db	0x7e
+	db	0x7e
+	db	0x7e
 
 
 ID_main_11	idata
@@ -223,24 +223,24 @@ _bres
 
 ID_main_13	code
 _common
-	retlw 0x01
-	retlw 0x02
-	retlw 0x04
-	retlw 0x08
+	retlw 0xfb
+	retlw 0xf7
+	retlw 0xfe
+	retlw 0xfd
 
 
 ID_main_14	code
 _digits
-	retlw 0x50
-	retlw 0xd7
-	retlw 0x64
-	retlw 0x45
-	retlw 0xc3
-	retlw 0x49
-	retlw 0x48
-	retlw 0xd5
-	retlw 0x40
-	retlw 0x41
+	retlw 0x7e
+	retlw 0x18
+	retlw 0xb6
+	retlw 0xbc
+	retlw 0xd8
+	retlw 0xec
+	retlw 0xee
+	retlw 0x38
+	retlw 0xfe
+	retlw 0xfc
 
 ;--------------------------------------------------------
 ; overlayable items in internal ram 
@@ -266,7 +266,7 @@ __sdcc_interrupt
 ;; Starting pCode block
 _irqHandler	;Function start
 ; 0 exit points
-;	.line	93; "main.c"	static void irqHandler(void) __interrupt 0 {
+;	.line	102; "main.c"	static void irqHandler(void) __interrupt 0 {
 	MOVWF	WSAVE
 	SWAPF	STATUS,W
 	CLRF	STATUS
@@ -277,7 +277,7 @@ _irqHandler	;Function start
 	MOVF	FSR,W
 	BANKSEL	___sdcc_saved_fsr
 	MOVWF	___sdcc_saved_fsr
-;	.line	95; "main.c"	bres+=256;
+;	.line	104; "main.c"	bres+=256;
 	BANKSEL	_bres
 	INCF	(_bres + 1),F
 	BTFSC	STATUS,2
@@ -285,7 +285,7 @@ _irqHandler	;Function start
 	BTFSC	STATUS,2
 	INCF	(_bres + 3),F
 ;;unsigned compare: left < lit(0x15180=86400), size=4
-;	.line	96; "main.c"	if (bres>=86400) { 
+;	.line	105; "main.c"	if (bres>=86400) { 
 	MOVLW	0x00
 	SUBWF	(_bres + 3),W
 	BTFSS	STATUS,2
@@ -304,7 +304,7 @@ _00117_DS_
 	BTFSS	STATUS,0
 	GOTO	_00106_DS_
 ;;genSkipc:3247: created from rifx:00000000047558E0
-;	.line	97; "main.c"	bres=bres-86400;
+;	.line	106; "main.c"	bres=bres-86400;
 	MOVLW	0x80
 	BANKSEL	_bres
 	ADDWF	_bres,F
@@ -319,12 +319,12 @@ _00117_DS_
 	MOVLW	0xff
 	BTFSS	STATUS,0
 	ADDWF	(_bres + 3),F
-;	.line	98; "main.c"	new_tick=1;
+;	.line	107; "main.c"	new_tick=1;
 	MOVLW	0x01
 	BANKSEL	_new_tick
 	MOVWF	_new_tick
 _00106_DS_
-;	.line	100; "main.c"	if ((++go_counter&15) == 0) go=1;
+;	.line	109; "main.c"	if ((++go_counter&15) == 0) go=1;
 	BANKSEL	_go_counter
 	INCF	_go_counter,F
 	MOVF	_go_counter,W
@@ -335,7 +335,7 @@ _00106_DS_
 	BANKSEL	_go
 	MOVWF	_go
 _00108_DS_
-;	.line	102; "main.c"	T0IF = 0;
+;	.line	111; "main.c"	T0IF = 0;
 	BANKSEL	_INTCONbits
 	BCF	_INTCONbits,2
 	BANKSEL	___sdcc_saved_fsr
@@ -385,47 +385,47 @@ code_main	code
 ;; Starting pCode block
 _main	;Function start
 ; 2 exit points
-;	.line	174; "main.c"	init_hw(); // Initialize hardware
+;	.line	182; "main.c"	init_hw(); // Initialize hardware
 	CALL	_init_hw
 _00150_DS_
-;	.line	178; "main.c"	while (!go); // wait for 4ms flag
+;	.line	186; "main.c"	while (!go); // wait for 4ms flag
 	MOVLW	0x00
 	BANKSEL	_go
 	IORWF	_go,W
 	BTFSC	STATUS,2
 	GOTO	_00150_DS_
-;	.line	179; "main.c"	go=0;        // reset go flag
+;	.line	187; "main.c"	go=0;        // reset go flag
 	CLRF	_go
-;	.line	182; "main.c"	if (new_tick) {
+;	.line	190; "main.c"	if (new_tick) {
 	BANKSEL	_new_tick
 	MOVF	_new_tick,W
 	BTFSC	STATUS,2
 	GOTO	_00158_DS_
-;	.line	183; "main.c"	new_tick=0;
+;	.line	191; "main.c"	new_tick=0;
 	CLRF	_new_tick
-;	.line	184; "main.c"	if (advance_tick()) {
+;	.line	192; "main.c"	if (advance_tick()) {
 	CALL	_advance_tick
 	BANKSEL	r0x1019
 	MOVWF	r0x1019
 	MOVF	r0x1019,W
 	BTFSC	STATUS,2
 	GOTO	_00158_DS_
-;	.line	185; "main.c"	if (advance_centival()) {
+;	.line	193; "main.c"	if (advance_centival()) {
 	CALL	_advance_centival
 	BANKSEL	r0x1019
 	MOVWF	r0x1019
-;	.line	186; "main.c"	advance_interval();
+;	.line	194; "main.c"	advance_interval();
 	MOVF	r0x1019,W
-;	.line	192; "main.c"	++digit;
+;	.line	200; "main.c"	++digit;
 	BTFSS	STATUS,2
 	CALL	_advance_interval
 _00158_DS_
 	BANKSEL	_digit
 	INCF	_digit,F
-;	.line	193; "main.c"	digit&=3;  // next digit to display
+;	.line	201; "main.c"	digit&=3;  // next digit to display
 	MOVLW	0x03
 	ANDWF	_digit,F
-;	.line	194; "main.c"	PORTA=common[digit];
+;	.line	202; "main.c"	PORTA=common[digit];
 	MOVF	_digit,W
 	ADDLW	(_common + 0)
 	BANKSEL	r0x1019
@@ -444,7 +444,7 @@ _00158_DS_
 	PAGESEL	$
 	BANKSEL	_PORTA
 	MOVWF	_PORTA
-;	.line	195; "main.c"	PORTB=display[digit]; // update display
+;	.line	203; "main.c"	PORTB=display[digit]; // update display
 	BANKSEL	_digit
 	MOVF	_digit,W
 	ADDLW	(_display + 0)
@@ -464,69 +464,39 @@ _00158_DS_
 	BANKSEL	INDF
 	MOVF	INDF,W
 	MOVWF	_PORTB
-;	.line	198; "main.c"	if (PORTA & BUTTON1) { // Release
-	MOVLW	0x10
-	ANDWF	_PORTA,W
-	BANKSEL	r0x1019
-	MOVWF	r0x1019
-	BANKSEL	_PORTA
-	MOVF	_PORTA,W
-	BANKSEL	r0x1019
-	ANDWF	r0x1019,F
-	MOVF	r0x1019,W
-	BTFSC	STATUS,2
+;	.line	206; "main.c"	if (BUTTON1) { // button pressed
+	BTFSS	_PORTA,4
 	GOTO	_00164_DS_
-;;swapping arguments (AOP_TYPEs 1/3)
-;;unsigned compare: left >= lit(0xB=11), size=1
-;	.line	199; "main.c"	if (Time_B1_Pressed > _t40ms) {
-	MOVLW	0x0b
-;	.line	200; "main.c"	advance_centival();
+;;unsigned compare: left < lit(0xFF=255), size=1
+;	.line	207; "main.c"	if (Time_B1_Pressed<255) Time_B1_Pressed++;	
+	MOVLW	0xff
 	BANKSEL	_Time_B1_Pressed
 	SUBWF	_Time_B1_Pressed,W
-;	.line	202; "main.c"	Time_B1_Pressed =0;
+	BTFSC	STATUS,0
+	GOTO	_00165_DS_
+;;genSkipc:3247: created from rifx:00000000047558E0
+	INCF	_Time_B1_Pressed,F
+	GOTO	_00165_DS_
+;;swapping arguments (AOP_TYPEs 1/3)
+;;unsigned compare: left >= lit(0xB=11), size=1
+_00164_DS_
+;	.line	209; "main.c"	if (Time_B1_Pressed > _t40ms) {
+	MOVLW	0x0b
+;	.line	210; "main.c"	advance_centival();
+	BANKSEL	_Time_B1_Pressed
+	SUBWF	_Time_B1_Pressed,W
+;	.line	212; "main.c"	Time_B1_Pressed =0;
 	BTFSC	STATUS,0
 	CALL	_advance_centival
 	BANKSEL	_Time_B1_Pressed
 	CLRF	_Time_B1_Pressed
-	GOTO	_00165_DS_
-;;unsigned compare: left < lit(0xFF=255), size=1
-_00164_DS_
-;	.line	204; "main.c"	if (Time_B1_Pressed<255) Time_B1_Pressed++;
-	MOVLW	0xff
-;	.line	207; "main.c"	if (PORTA & BUTTON2) { // Release
-	BANKSEL	_Time_B1_Pressed
-	SUBWF	_Time_B1_Pressed,W
-	BTFSS	STATUS,0
-	INCF	_Time_B1_Pressed,F
 _00165_DS_
-	MOVLW	0x20
+;	.line	215; "main.c"	if (BUTTON2) { // button pressed
 	BANKSEL	_PORTA
-	ANDWF	_PORTA,W
-	BANKSEL	r0x1019
-	MOVWF	r0x1019
-	BANKSEL	_PORTA
-	MOVF	_PORTA,W
-	BANKSEL	r0x1019
-	ANDWF	r0x1019,F
-	MOVF	r0x1019,W
-	BTFSC	STATUS,2
+	BTFSS	_PORTA,5
 	GOTO	_00171_DS_
-;;swapping arguments (AOP_TYPEs 1/3)
-;;unsigned compare: left >= lit(0xB=11), size=1
-;	.line	208; "main.c"	if (Time_B2_Pressed > _t40ms) {
-	MOVLW	0x0b
-;	.line	209; "main.c"	advance_interval();
-	BANKSEL	_Time_B2_Pressed
-	SUBWF	_Time_B2_Pressed,W
-;	.line	211; "main.c"	Time_B2_Pressed =0;
-	BTFSC	STATUS,0
-	CALL	_advance_interval
-	BANKSEL	_Time_B2_Pressed
-	CLRF	_Time_B2_Pressed
-	GOTO	_00150_DS_
 ;;unsigned compare: left < lit(0xFF=255), size=1
-_00171_DS_
-;	.line	213; "main.c"	if (Time_B2_Pressed<255) Time_B2_Pressed++;
+;	.line	216; "main.c"	if (Time_B2_Pressed<255) Time_B2_Pressed++;	
 	MOVLW	0xff
 	BANKSEL	_Time_B2_Pressed
 	SUBWF	_Time_B2_Pressed,W
@@ -534,6 +504,20 @@ _00171_DS_
 	GOTO	_00150_DS_
 ;;genSkipc:3247: created from rifx:00000000047558E0
 	INCF	_Time_B2_Pressed,F
+	GOTO	_00150_DS_
+;;swapping arguments (AOP_TYPEs 1/3)
+;;unsigned compare: left >= lit(0xB=11), size=1
+_00171_DS_
+;	.line	218; "main.c"	if (Time_B2_Pressed > _t40ms) {
+	MOVLW	0x0b
+;	.line	219; "main.c"	advance_interval();
+	BANKSEL	_Time_B2_Pressed
+	SUBWF	_Time_B2_Pressed,W
+;	.line	221; "main.c"	Time_B2_Pressed =0;
+	BTFSC	STATUS,0
+	CALL	_advance_interval
+	BANKSEL	_Time_B2_Pressed
+	CLRF	_Time_B2_Pressed
 	GOTO	_00150_DS_
 	RETURN	
 ; exit point of _main
@@ -547,21 +531,21 @@ _00171_DS_
 ;; Starting pCode block
 _init_hw	;Function start
 ; 2 exit points
-;	.line	160; "main.c"	TRISB=0b00000000; // All as outputs (segments) 
+;	.line	169; "main.c"	TRISB=0b00000000; // All as outputs (segments) 
 	BANKSEL	_TRISB
 	CLRF	_TRISB
-;	.line	161; "main.c"	TRISA=0b11110000; // bits [3..0] as outputs (common a/k)
+;	.line	170; "main.c"	TRISA=0b11110000; // bits [3..0] as outputs (common a/k)
 	MOVLW	0xf0
 	MOVWF	_TRISA
-;	.line	164; "main.c"	OPTION_REG = 0b11011111;  // Timer0 internal clock, 1:1 rate (prescaler to wdt)
+;	.line	173; "main.c"	OPTION_REG = 0b11011111;  // Timer0 internal clock, 1:1 rate (prescaler to wdt)
 	MOVLW	0xdf
 	MOVWF	_OPTION_REG
-;	.line	165; "main.c"	TMR0  =0;
+;	.line	174; "main.c"	TMR0  =0;
 	BANKSEL	_TMR0
 	CLRF	_TMR0
-;	.line	166; "main.c"	T0IF  = 0;
+;	.line	175; "main.c"	T0IF  = 0;
 	BCF	_INTCONbits,2
-;	.line	167; "main.c"	INTCON     = 0b10100000;  // enable timer0 and global interrupts
+;	.line	176; "main.c"	INTCON     = 0b10100000;  // enable timer0 and global interrupts
 	MOVLW	0xa0
 	MOVWF	_INTCON
 	RETURN	
@@ -588,10 +572,10 @@ _init_hw	;Function start
 ;; Starting pCode block
 _advance_interval	;Function start
 ; 2 exit points
-;	.line	143; "main.c"	unsigned char r=0;
+;	.line	152; "main.c"	unsigned char r=0;
 	BANKSEL	r0x1015
 	CLRF	r0x1015
-;	.line	145; "main.c"	if (++interval_01>9) {
+;	.line	154; "main.c"	if (++interval_01>9) {
 	BANKSEL	_interval_01
 	INCF	_interval_01,F
 ;;swapping arguments (AOP_TYPEs 1/3)
@@ -601,9 +585,9 @@ _advance_interval	;Function start
 	BTFSS	STATUS,0
 	GOTO	_00141_DS_
 ;;genSkipc:3247: created from rifx:00000000047558E0
-;	.line	146; "main.c"	interval_01=0;
+;	.line	155; "main.c"	interval_01=0;
 	CLRF	_interval_01
-;	.line	147; "main.c"	if (++interval_10>9){
+;	.line	156; "main.c"	if (++interval_10>9){
 	BANKSEL	_interval_10
 	INCF	_interval_10,F
 ;;swapping arguments (AOP_TYPEs 1/3)
@@ -613,14 +597,14 @@ _advance_interval	;Function start
 	BTFSS	STATUS,0
 	GOTO	_00141_DS_
 ;;genSkipc:3247: created from rifx:00000000047558E0
-;	.line	148; "main.c"	interval_10=0;
+;	.line	157; "main.c"	interval_10=0;
 	CLRF	_interval_10
-;	.line	149; "main.c"	r=1;   // overflow
+;	.line	158; "main.c"	r=1;   // overflow
 	MOVLW	0x01
 	BANKSEL	r0x1015
 	MOVWF	r0x1015
 _00141_DS_
-;	.line	153; "main.c"	display [1] = digits[interval_01];
+;	.line	162; "main.c"	display [1] = digits[interval_01];
 	BANKSEL	_interval_01
 	MOVF	_interval_01,W
 	ADDLW	(_digits + 0)
@@ -642,7 +626,7 @@ _00141_DS_
 	MOVWF	r0x1018
 	BANKSEL	_display
 	MOVWF	(_display + 1)
-;	.line	154; "main.c"	display [0] = digits[interval_10];		
+;	.line	163; "main.c"	display [0] = digits[interval_10];		
 	BANKSEL	_interval_10
 	MOVF	_interval_10,W
 	ADDLW	(_digits + 0)
@@ -664,7 +648,7 @@ _00141_DS_
 	MOVWF	r0x1018
 	BANKSEL	_display
 	MOVWF	(_display + 0)
-;	.line	155; "main.c"	return r;
+;	.line	164; "main.c"	return r;
 	BANKSEL	r0x1015
 	MOVF	r0x1015,W
 	RETURN	
@@ -691,10 +675,10 @@ _00141_DS_
 ;; Starting pCode block
 _advance_centival	;Function start
 ; 2 exit points
-;	.line	126; "main.c"	unsigned char r=0;
+;	.line	135; "main.c"	unsigned char r=0;
 	BANKSEL	r0x1015
 	CLRF	r0x1015
-;	.line	128; "main.c"	if ((++centival_01)>9) {
+;	.line	137; "main.c"	if ((++centival_01)>9) {
 	BANKSEL	_centival_01
 	INCF	_centival_01,F
 ;;swapping arguments (AOP_TYPEs 1/3)
@@ -704,9 +688,9 @@ _advance_centival	;Function start
 	BTFSS	STATUS,0
 	GOTO	_00133_DS_
 ;;genSkipc:3247: created from rifx:00000000047558E0
-;	.line	129; "main.c"	centival_01=0;
+;	.line	138; "main.c"	centival_01=0;
 	CLRF	_centival_01
-;	.line	130; "main.c"	if ((++centival_10)>9){
+;	.line	139; "main.c"	if ((++centival_10)>9){
 	BANKSEL	_centival_10
 	INCF	_centival_10,F
 ;;swapping arguments (AOP_TYPEs 1/3)
@@ -716,14 +700,14 @@ _advance_centival	;Function start
 	BTFSS	STATUS,0
 	GOTO	_00133_DS_
 ;;genSkipc:3247: created from rifx:00000000047558E0
-;	.line	131; "main.c"	centival_10=0;
+;	.line	140; "main.c"	centival_10=0;
 	CLRF	_centival_10
-;	.line	132; "main.c"	r=1;   // overflow
+;	.line	141; "main.c"	r=1;   // overflow
 	MOVLW	0x01
 	BANKSEL	r0x1015
 	MOVWF	r0x1015
 _00133_DS_
-;	.line	136; "main.c"	display [3] = digits[centival_01];
+;	.line	145; "main.c"	display [3] = digits[centival_01];
 	BANKSEL	_centival_01
 	MOVF	_centival_01,W
 	ADDLW	(_digits + 0)
@@ -745,7 +729,7 @@ _00133_DS_
 	MOVWF	r0x1018
 	BANKSEL	_display
 	MOVWF	(_display + 3)
-;	.line	137; "main.c"	display [2] = digits[centival_10];	
+;	.line	146; "main.c"	display [2] = digits[centival_10];	
 	BANKSEL	_centival_10
 	MOVF	_centival_10,W
 	ADDLW	(_digits + 0)
@@ -767,7 +751,7 @@ _00133_DS_
 	MOVWF	r0x1018
 	BANKSEL	_display
 	MOVWF	(_display + 2)
-;	.line	138; "main.c"	return r;
+;	.line	147; "main.c"	return r;
 	BANKSEL	r0x1015
 	MOVF	r0x1015,W
 	RETURN	
@@ -785,10 +769,10 @@ _00133_DS_
 ;; Starting pCode block
 _advance_tick	;Function start
 ; 2 exit points
-;	.line	108; "main.c"	unsigned char r=0;
+;	.line	117; "main.c"	unsigned char r=0;
 	BANKSEL	r0x1015
 	CLRF	r0x1015
-;	.line	110; "main.c"	if ((++tick_01)>9) {
+;	.line	119; "main.c"	if ((++tick_01)>9) {
 	BANKSEL	_tick_01
 	INCF	_tick_01,F
 ;;swapping arguments (AOP_TYPEs 1/3)
@@ -798,9 +782,9 @@ _advance_tick	;Function start
 	BTFSS	STATUS,0
 	GOTO	_00125_DS_
 ;;genSkipc:3247: created from rifx:00000000047558E0
-;	.line	111; "main.c"	tick_01=0;
+;	.line	120; "main.c"	tick_01=0;
 	CLRF	_tick_01
-;	.line	113; "main.c"	if ((++tick_10)>9){
+;	.line	122; "main.c"	if ((++tick_10)>9){
 	BANKSEL	_tick_10
 	INCF	_tick_10,F
 ;;swapping arguments (AOP_TYPEs 1/3)
@@ -810,26 +794,36 @@ _advance_tick	;Function start
 	BTFSS	STATUS,0
 	GOTO	_00123_DS_
 ;;genSkipc:3247: created from rifx:00000000047558E0
-;	.line	114; "main.c"	tick_10=0;
+;	.line	123; "main.c"	tick_10=0;
 	CLRF	_tick_10
-;	.line	115; "main.c"	r=1;   // overflow
+;	.line	124; "main.c"	r=1;   // overflow
 	MOVLW	0x01
 	BANKSEL	r0x1015
 	MOVWF	r0x1015
 _00123_DS_
-;	.line	118; "main.c"	display [1] ^= _decimal_point;
+;	.line	127; "main.c"	display [1] ^= _decimal_point;
 	BANKSEL	_display
 	MOVF	(_display + 1),W
 	BANKSEL	r0x1016
 	MOVWF	r0x1016
-	MOVLW	0x40
+	MOVLW	0x01
 	XORWF	r0x1016,F
 ;;/home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:6461: size=0, offset=0, AOP_TYPE(res)=8
 	MOVF	r0x1016,W
 	BANKSEL	_display
 	MOVWF	(_display + 1)
+;	.line	128; "main.c"	display [2] ^= _decimal_point;	
+	MOVF	(_display + 2),W
+	BANKSEL	r0x1016
+	MOVWF	r0x1016
+	MOVLW	0x01
+	XORWF	r0x1016,F
+;;/home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:6461: size=0, offset=0, AOP_TYPE(res)=8
+	MOVF	r0x1016,W
+	BANKSEL	_display
+	MOVWF	(_display + 2)
 _00125_DS_
-;	.line	121; "main.c"	return r;
+;	.line	130; "main.c"	return r;
 	BANKSEL	r0x1015
 	MOVF	r0x1015,W
 	RETURN	
@@ -837,6 +831,6 @@ _00125_DS_
 
 
 ;	code size estimation:
-;	  280+   80 =   360 instructions (  880 byte)
+;	  275+   76 =   351 instructions (  854 byte)
 
 	end

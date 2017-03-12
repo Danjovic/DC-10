@@ -28,8 +28,8 @@ def tick():
     #get the total amount of seconds from midnight
     t=time.localtime()
     seconds_run = t.tm_sec + 60 * t.tm_min + 60*60*t.tm_hour
-    # add 6 hours offset. C10 time begin at 6:00 (AM)
-    dc10_seconds = ( 6 * 60 * 60 + seconds_run ) % ( 60*60*24 )
+    # subtract 6 hours offset. C10 time begin at 6:00 (AM)
+    dc10_seconds = ( 18 * 60 * 60 + seconds_run ) % ( 60*60*24 )
 
     #format string
     dc10_time = '0000' + str (dc10_seconds * 10000 / (60 * 60 * 24))    
